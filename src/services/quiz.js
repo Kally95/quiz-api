@@ -12,8 +12,8 @@ async function saveQuizAsync(quiz) {
     throw new ValidationError("Blank quiz name");
   }
 
-  const allQuizzes = await db.getAllQuizzes();
-  const nameExists = allQuizzes
+  const quizzes = await db.getAllQuizzes();
+  const nameExists = quizzes
     .filter((q) => q.id != quiz.id)
     .some((q) => q.name.toLowerCase() == quiz.name.toLowerCase().trim());
   if (nameExists) {
